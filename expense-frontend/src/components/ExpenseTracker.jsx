@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./ExpenseTracker.css";
 
-const API_URL = "http://localhost:8081/api/expenses";
+const API_URL = import.meta.env.VITE_API_URL;
+
+async function fetchExpenses() {
+  const response = await fetch(API_URL);
+  const data = await response.json();
+  console.log(data);
+}
 
 const ExpenseTracker = () => {
   const [expenses, setExpenses] = useState([]);
